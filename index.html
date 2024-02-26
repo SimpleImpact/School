@@ -1,88 +1,185 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <title>Python Documentation</title>
+<title>Link Page</title>
 </head>
 <body>
-    <h1>Home page </h1>
-<p></p>
-    <h3>The purpose of this website is to help a complete beginner learn how to code Python. The reason Python was chosen instead of a different language is because it is a very beginner language to learn. It is widely renowned for being able to import packages. Packages are installable files that add code to complete a generic task, some just add math functions or others that add sprites, physics or complete automation of keyboard and mouse functions.</h3>
-<p></p>
-    <p>Additional info:</p>
-    <p>Package lists: <a href=https://pypi.org/ target=_blank>“https://pypi.org/”</a></p>
-    <p>Other Python resources <a href=https://www.w3schools.com/python/ target="_blank">https://www.w3schools.com/python/</a></p>
-<hr>
-<p></p>
-<p>Python documentation</p>
-<p></p>
-<p>A basic tutorial with examples and helpful tips and tricks</p>
-<p></p>
-<p>Basic info:</p>
-<p>I will be using Visual Studio Code by Microsoft to display code and other functions, you can download it “https://code.visualstudio.com/” here. I will also use comments to show where to put code, they are displayed by hashtags.</p>
-<p></p>
-<p>A start:</p>
-<p>Many basic commands are required to be used to make anything functional, including if-then statements, input, variables, and knowledge of basic math.</p>
-<p></p>
-<p>Python reads all code from left to right, top to bottom, just like a human. So, what this means is that you must declare all variables before trying to use them.</p>
-<p></p>
-<p>Basic If-Then Statements</p>
+
 <pre>
-<p style="color:red">X</p>
-print(var1)        
-var1 = “red”
-<p style="color:green">✓</p>
-var1 = “red”
-print(var1)
+  //Variables
+var score = 0;
+var health = 120;
+var rotation = 0;
+var speed = 1;
+var shoot = true;
+var stage = 0;
+
+// Sprites
+var ground = createSprite(200, 200);
+ground.setAnimation("high");
+
+var player = createSprite(200, 200);
+player.setAnimation("still");
+player.scale = 0.5;
+
+var bad = createSprite(200, 200);
+bad.setAnimation("bad");
+
+bad.scale = 0.5 ;
+
+var control = createSprite(200, 200);
+control.setAnimation("animation_1");
+
+var projectile = createSprite(200, 200);
+projectile.setAnimation("fireball");
+projectile.scale = 0.1;
+projectile.visible = false;
+
+
+function draw() {
+  background("white");
+  if (keyWentDown("space")){
+    stage = 1;
+  }
+  
+  if (stage == 0){
+    textSize(20);
+    noStroke();
+    text("Use arrow keys to move and click to shoot", 10, 150);
+    text("Press space to start", 110, 250);
+  }
+  else {
+    functions();
+  }
+  
+}
+
+function functions(){
+  // All Functions
+  console.clear();
+  bg();
+  playerMove();
+  badMove();
+  drawSprites();
+  if (health <= 0) {
+    background("black");
+    textSize(50);
+    fill("green");
+    text("Game Over!", 50, 200);
+    player.destroy();
+    
+  }
+  fill("black");
+  text("Score: " + score, 20, 20);
+  text("Health: " + health, 320, 20);
+}
+
+function playerMove(){
+  // Shooting
+  control.pointTo(World.mouseX, World.mouseY);
+  rotation = control.rotation;
+  if(shoot == true) {
+    if (mouseWentDown("left")){
+      projectile.x = 200;
+      projectile.y = 200;
+      projectile.velocityX = (World.mouseX - 200)/10;
+      projectile.velocityY = (World.mouseY - 200)/10;
+      projectile.rotation = rotation;
+      projectile.visible = true;
+      shoot = false;
+    }
+  }
+  if (projectile.x >= 400 || projectile.x <= 0 || projectile.y >= 400 || projectile.y <= 0) {
+    shoot = true;
+  }
+  
+  // -Ground- \\
+  if (keyDown("right")) {
+    ground.x -= 2;
+    bad.x -= 2;
+  }
+  if (keyDown("left")) {
+    ground.x += 2;
+    bad.x += 2;
+  }
+  if (keyDown("down")) {
+    ground.y -= 2;
+    bad.y -= 2;
+  }
+  if (keyDown("up")) {
+    ground.y += 2;
+    bad.y += 2;
+  }
+  
+  // Player Animation \\
+  if (keyDown("right")) {
+    player.setAnimation("walkR");
+  } 
+  else if ((keyDown("left"))) {
+    player.setAnimation("walkL");
+  }
+  else if (keyDown("down")) {
+    player.setAnimation("walkR");
+  } 
+  else if ((keyDown("up"))) {
+    player.setAnimation("walkL");
+  }
+  else {
+    player.setAnimation("still");
+  }
+}
+ 
+function badMove(){
+  // Bad movement
+  if (bad.x < 200){
+    bad.x += speed;
+  }
+  else {
+    bad.x -= speed;
+  }
+  if (bad.y < 200){
+    bad.y += speed;
+  }
+  else {
+    bad.y -= speed;
+  }
+  
+  if (bad.isTouching(player)){
+    waveGen();
+    health -= 20;
+  }
+  
+  if (bad.x < -50 || bad.x > 450 || bad.y < -50 || bad.y > 450){
+    waveGen();
+    score += 1;
+    speed += 0.2;
+  }
+  
+  // Colision
+  bad.collide(projectile);
+  bad.velocityX = 0;
+  bad.velocityY = 0;
+}
+
+function waveGen(){
+  //ground.x = 200; ground.y = 200;
+  bad.x = randomNumber(0, 400);
+  bad.y = randomNumber(0, 400);
+  
+}
+function bg(){
+  // Background
+  if (health >= 75){
+    ground.setAnimation("high");
+    
+  } else if (health >= 25 && health <= 74){
+    ground.setAnimation("med");
+  }else {
+    ground.setAnimation("low");
+  }
+}
+
 </pre>
-<p></p>
-<p>An if-then statement can be arranged like this</p>
-<p></p>
-<pre>
-if var1 == var2:
-   print(var1)
-</pre>
-<p></p>
-<p>In this case, we would receive an error because we never defined a variable</p>
-<p></p>
-<pre>
-var1 = 1
-var2 = 1
-<p></p>
-if var1 == var2:
-    print(var1)
-</pre>
-<p></p>
-<p>Now we will see an output of “1” because 1 = 1 and we told the computer to print var1, which is 1</p>
-<p></p>
-<p></p>
-<p>Variable</p>
-<p></p>
-<p>There are many different data types</p>
-<p></p>
-<p>The basics are: </p>
-<p></p>
-<p>    int, can store any number from -2,147,483,648 to 2,147,483,647, but no decimals</p>
-<p>    float, any number between -3400000000000000000000000000 to 3400000000000000000000000000 with decimals</p>
-<p>    boolean, true or false</p>
-<p>    str, any text</p>
-<p></p>
-<p>Variables that use numbers can be assigned in two ways</p>
-<p>var1 = var1 + 1</p>
-<p></p>
-<p>var1 += 1</p>
-<p></p>
-<p>Both of these ways do the same thing, they add one to var1</p>
-<p></p>
-<p></p>
-<p>Inputs</p>
-<p></p>
-<p>By default, Python can only accept one type of input without packages, and that is text. An input statement looks like this:</p>
-<p></p>
-<p>TextInput = input(“Input: “)</p>
-<p></p>
-<p>When you type anything in, it will essentially set the input to whatever you input in the computer's eyes. In most cases, you will be trying to get a number from an input, but an input will give a string. So, to use an input to receive a number from the user you must call the int() function like this:</p>
-<p></p>
-<p>NumInput = int(input(“Input: “))</p>
-<p></p>
+
 </body>
 </html>
