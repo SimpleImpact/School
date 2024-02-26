@@ -5,8 +5,181 @@
 </head>
 <body>
 
-<h1>Link Page</h1>
-<a href="https://www.classroom.google.com">Google Classroom</p>
+<pre>
+  //Variables
+var score = 0;
+var health = 120;
+var rotation = 0;
+var speed = 1;
+var shoot = true;
+var stage = 0;
+
+// Sprites
+var ground = createSprite(200, 200);
+ground.setAnimation("high");
+
+var player = createSprite(200, 200);
+player.setAnimation("still");
+player.scale = 0.5;
+
+var bad = createSprite(200, 200);
+bad.setAnimation("bad");
+
+bad.scale = 0.5 ;
+
+var control = createSprite(200, 200);
+control.setAnimation("animation_1");
+
+var projectile = createSprite(200, 200);
+projectile.setAnimation("fireball");
+projectile.scale = 0.1;
+projectile.visible = false;
+
+
+function draw() {
+  background("white");
+  if (keyWentDown("space")){
+    stage = 1;
+  }
+  
+  if (stage == 0){
+    textSize(20);
+    noStroke();
+    text("Use arrow keys to move and click to shoot", 10, 150);
+    text("Press space to start", 110, 250);
+  }
+  else {
+    functions();
+  }
+  
+}
+
+function functions(){
+  // All Functions
+  console.clear();
+  bg();
+  playerMove();
+  badMove();
+  drawSprites();
+  if (health <= 0) {
+    background("black");
+    textSize(50);
+    fill("green");
+    text("Game Over!", 50, 200);
+    player.destroy();
+    
+  }
+  fill("black");
+  text("Score: " + score, 20, 20);
+  text("Health: " + health, 320, 20);
+}
+
+function playerMove(){
+  // Shooting
+  control.pointTo(World.mouseX, World.mouseY);
+  rotation = control.rotation;
+  if(shoot == true) {
+    if (mouseWentDown("left")){
+      projectile.x = 200;
+      projectile.y = 200;
+      projectile.velocityX = (World.mouseX - 200)/10;
+      projectile.velocityY = (World.mouseY - 200)/10;
+      projectile.rotation = rotation;
+      projectile.visible = true;
+      shoot = false;
+    }
+  }
+  if (projectile.x >= 400 || projectile.x <= 0 || projectile.y >= 400 || projectile.y <= 0) {
+    shoot = true;
+  }
+  
+  // -Ground- \\
+  if (keyDown("right")) {
+    ground.x -= 2;
+    bad.x -= 2;
+  }
+  if (keyDown("left")) {
+    ground.x += 2;
+    bad.x += 2;
+  }
+  if (keyDown("down")) {
+    ground.y -= 2;
+    bad.y -= 2;
+  }
+  if (keyDown("up")) {
+    ground.y += 2;
+    bad.y += 2;
+  }
+  
+  // Player Animation \\
+  if (keyDown("right")) {
+    player.setAnimation("walkR");
+  } 
+  else if ((keyDown("left"))) {
+    player.setAnimation("walkL");
+  }
+  else if (keyDown("down")) {
+    player.setAnimation("walkR");
+  } 
+  else if ((keyDown("up"))) {
+    player.setAnimation("walkL");
+  }
+  else {
+    player.setAnimation("still");
+  }
+}
+ 
+function badMove(){
+  // Bad movement
+  if (bad.x < 200){
+    bad.x += speed;
+  }
+  else {
+    bad.x -= speed;
+  }
+  if (bad.y < 200){
+    bad.y += speed;
+  }
+  else {
+    bad.y -= speed;
+  }
+  
+  if (bad.isTouching(player)){
+    waveGen();
+    health -= 20;
+  }
+  
+  if (bad.x < -50 || bad.x > 450 || bad.y < -50 || bad.y > 450){
+    waveGen();
+    score += 1;
+    speed += 0.2;
+  }
+  
+  // Colision
+  bad.collide(projectile);
+  bad.velocityX = 0;
+  bad.velocityY = 0;
+}
+
+function waveGen(){
+  //ground.x = 200; ground.y = 200;
+  bad.x = randomNumber(0, 400);
+  bad.y = randomNumber(0, 400);
+  
+}
+function bg(){
+  // Background
+  if (health >= 75){
+    ground.setAnimation("high");
+    
+  } else if (health >= 25 && health <= 74){
+    ground.setAnimation("med");
+  }else {
+    ground.setAnimation("low");
+  }
+}
+
+</pre>
 
 </body>
 </html>
