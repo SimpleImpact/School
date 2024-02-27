@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Space+Mono|Muli">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <section>
+      <nav id="top">
+        <a href="index.html">Home</a>
+        <a href="tutorial.html">Tutorial</a>
+        <a href="xtras.html">Extras</a>
+      </nav>
+    </section>
+
+    <section>
+      <header>
+        <h1>Packages</h1>
+      </header>
+    </section>
+    
+    <section>
+      <header>
+        <h3>Python is known for its community-made add-ons called packages. These can be downloaded from the Python package manager, pip.</h3>
+
+        <p>To import a package from your files, type “import (package name).</p>
+      </header>
+    </section>
+
+    <section>
+      <article class="two articles">
+        <h3>PyAutoGUI</h3>
+
+        <p>Pyautogui can be used to automate keyboard and mouse functions. It can move the mouse, detect the position of the mouse, and perform keystrokes, this can be used to automate tasks repetitively.</p>
+        <p>The pyautogui.displayMousePosition() function will output the position of the mouse, and the color pixel under it.</p>
+        <p>The pyautogui.moveto(x, y) function will move the mouse to the location specified</p>
+        <p>This is not all this powerful package can do, to see more, click <a href="https://pyautogui.readthedocs.io/en/latest/">here</a></p>
+        <br>
+        <img src="cursor.jpg" alt="Cursur" class="cursurImg">
+        
+      </article>
+
+      <article class="two articles">
+        <h3>PyGame</h3>
+
+        <p>Pygame can be used to create games in python. This package is very advanced, but here are some simple and useful functions.</p>
+
+        <p>You can detect keypresses like this:</p>
+
+        <pre>    import pygame
+    <br>
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_KEY]:
+    #code to run
+    </pre>
+
+        <p>In this case, replace KEY with the lowercase key of your choice. If a key is pressed it will return true, if not, false.</p>
+
+        <p>I you want to learn more click <a href="https://www.pygame.org/docs/">here</a></p>
+      </article>
+
+    </section>
+    
+    <section>
+      <footer>
+        <a href="https://www.flickr.com/photos/curiouslee/3603992742">Cursor by Chris Potter - 3D Hand Cursor | Please give attribution to 'ccPixs.com' (an… | Flickr</a>
+        <br><br>
+        <a href="#top">To Top</a>
+      </footer>
+    </section>
+  <script type='text/javascript'  src="https://studio.code.org/6d9d61ece92c6037e54eb3a9add75dbd3be7d08fda4b7065d31f6c96f3e6df00/inject.js"></script></body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CSS Template</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Space+Mono|Muli">
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <section>
+      <nav id="top">
+        <a href="index.html">Home</a>
+        <a href="tutorial.html">Tutorial</a>
+        <a href="xtras.html">Extras</a>
+      </nav>
+    </section>
+
+    <section>
+      <header>
+        <h1>Home Page</h1>
+      </header>
+    </section>
+
+    <section>
+      <article class="side articles">
+        <img class="homeImg" width="300px" src="code.jpg" alt="Code">
+      </article>
+
+      <article class="middle article">
+        <h3 class="bigPara">The purpose of this website is to help a complete beginner learn how to code Python. The reason Python was chosen instead of a different language is because it is a very beginner language to learn. It is widely renowned for being able to import packages. Packages are installable files that add code to complete a generic task, some just add math functions or others that add sprites, physics or complete automation of keyboard and mouse functions.</h3>
+      </article>
+
+      <article class="side articles">
+        <img class="homeImg" width="300px" src="pythonLogo.jpg" alt="Python Logo">
+      </article>
+
+    </section>
+
+    <section>
+      <footer>
+        <a href="https://www.flickr.com/photos/86530412@N02/7946624140">Python Logo by Mike Lee - python_logo_moo | Mike Lee | Flickr</a>
+        <br><br>
+        <a href="https://www.flickr.com/photos/joncutrer/44661017890">Python Code by Chris Potter - 3D Hand Cursor | Please give attribution to 'ccPixs.com' (an… | Flickr</a>
+        <br><br>
+        <a href="#top">To Top</a>
+      </footer>
+    </section>
+  <script type='text/javascript'  src="https://studio.code.org/6d9d61ece92c6037e54eb3a9add75dbd3be7d08fda4b7065d31f6c96f3e6df00/inject.js"></script></body>
+</html>

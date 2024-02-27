@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Space+Mono|Muli">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <section>
+      <nav id="top">
+        <a href="index.html">Home</a>
+        <a href="tutorial.html">Tutorial</a>
+        <a href="xtras.html">Extras</a>
+      </nav>
+    </section>
+
+    <section>
+      <header>
+        <h1>Python Documentation</h1>
+      </header>
+    </section>
+    
+    <section>
+      <header>
+        <h4>Basic info:</h4>
+        <p>I will be using Visual Studio Code by Microsoft and I suggest using it because it is easier to code with because it has many QoL features, you can download it <a href="https://code.visualstudio.com/" ;="">here</a>. I will also use comments to show where to put code, they are displayed by hashtags.</p>
+
+
+        <p>Many basic commands are required to be used to make anything functional, including if-then statements, input, variables, and knowledge of basic math.</p>
+
+        <p>Python reads all code from left to right, top to bottom, just like a human. So, what this means is that you must declare all variables before trying to use them.</p>
+
+        <p style="color:red">✖</p>
+
+        <pre>      print(var1)        
+      var1 = “red”
+      <p style="color:#00ff00">✔</p>
+      var1 = “red”
+      print(var1)
+    </pre>
+      </header>
+    </section>
+
+    <section>
+      <article class="two articles">
+        <h4>Basic If-Then Statements:</h4>
+        <p>An if-then statement can be arranged like this</p>
+
+        <pre>      if var1 == var2:
+      print(var1)
+    </pre>
+
+        <p>In this case, we would receive an error because we never defined a variable</p>
+
+        <pre>      var1 = 1
+      var2 = 1
+      <br>
+      if var1 == var2:
+      print(var1)
+    </pre>
+
+        <p>Now we will see an output of “1” because 1 = 1 and we told the computer to print var1, which is 1</p>
+      </article>
+
+      <article class="two articles">
+        <h4>Variables:</h4>
+
+        <p>There are many different data types</p>
+
+        <p>The basics are: </p>
+
+        <ul>
+
+          <li>int, can store any number from -2,147,483,648 to 2,147,483,647, but no decimals</li>
+          <br>
+          <li>float, any number between -3400000000000000000000000000 to 3400000000000000000000000000 with decimals</li>
+          <br>
+          <li>boolean, true or false</li>
+          <br>
+          <li>str, any text</li>
+
+        </ul>
+
+        <p>Variables that use numbers can be assigned in two ways</p>
+
+        <p>var1 = var1 + 1</p>
+
+        <p>var1 += 1</p>
+
+        <p>Both of these ways do the same thing, they add one to var1</p>
+      </article>
+      
+      <article class="two articles">
+        <h4>Inputs:</h4>
+
+        <p>By default, Python can only accept one type of input without packages, and that is text. An input statement looks like this:</p>
+
+        <p>TextInput = input(“Input: “)</p>
+
+        <p>When you type anything in, it will essentially set the input to whatever you input in the computer's eyes. In most cases, you will be trying to get a number from an input, but an input will give a string. So, to use an input to receive a number from the user you must call the int() function like this:</p>
+
+        <p>NumInput = int(input(“Input: “))</p>
+      </article>
+    </section>
+    
+    <section>
+      <footer>
+        <a href="#top">To Top</a>
+      </footer>
+    </section>
+    
+  <script type='text/javascript'  src="https://studio.code.org/6d9d61ece92c6037e54eb3a9add75dbd3be7d08fda4b7065d31f6c96f3e6df00/inject.js"></script></body>
+</html>
