@@ -1,0 +1,142 @@
+//GAME SETUP
+var frog = createSprite(50, 200);
+frog.setAnimation("frog");
+
+var fly = createSprite(445, randomNumber(0, 315));
+fly.setAnimation("fly");
+
+var rock = createSprite(490, 375);
+rock.setAnimation("rock_1");
+
+var boat = createSprite(50, 350);
+boat.setAnimation("boat");
+boat.scale = 1.2;
+
+var jumping = true;
+
+//Create the variables
+var score = 0;
+var health = 100;
+var cloudx = 475;
+var speed = 0;
+var scoreMulti = 1;
+var timer = 21;
+
+function draw() {
+  
+  timer += 1;
+  
+  if (score >= 100) {
+    fly.velocityX = 0;
+    rock.velocityX = 0;
+    fill("green");
+    textSize(50);
+    text("Winner!" , 40, 200);
+  }
+  
+  speed = (score/3) + 3;
+  scoreMulti  = (score/10) + 1;
+  
+  // BACKGROUND
+  background("skyblue");
+  noStroke();
+  
+  fill("white");
+  ellipse(cloudx, 50, 150, 50);
+  if (cloudx < -75){
+    cloudx = 475;
+  }
+  else{
+    cloudx -= 2 * speed - 3;
+  }
+  
+
+  fly.velocityX = -speed;
+  
+  rock.velocityX = -(speed + 0.5);
+  
+  // JUMPING
+  if (keyWentDown("space")){
+    if (jumping == false){
+      frog.velocityY = -12;
+      jumping = true;
+    }
+  }
+  else if (frog.y > 315){
+    frog.y = 315;
+    frog.velocityY = 0;
+    jumping = false;
+    
+  }
+  else {
+    frog.velocityY += 0.25;
+  }
+  
+  // LOOPING
+  if (fly.isTouching(frog)){
+    fly.x = 445;
+    fly.y = randomNumber(0, 315);
+    score += scoreMulti;
+  }
+  
+  if (fly.x < -50){
+    fly.x = 445;
+    fly.y = randomNumber(0, 315);
+  }
+  
+  if (rock.x < -50){
+    rock.x = 465;
+  }
+  
+  if (rock.isTouching(frog)){
+    rock.x = 465;
+    health -= 10;
+  }
+  
+  // SpeedUp
+  if (keyWentDown("z")){
+    if (timer >= 100){
+      timer = 0;
+    }
+  }
+  if (timer <= 20){
+    fly.velocityX -= 5;
+    rock.velocityX -= 5;
+  }
+  
+  drawSprites();
+  
+  fill("blue");
+  rect(0, 350, 400, 100);
+  /*
+  if (timer < 360){
+    arc(200, 200, 200, 200, 0, (timer * 3.6));
+  }
+  if (timer >= 360){
+    arc(200, 200, 200, 200, 0, 360);
+  }
+  */
+  
+  text("Press Z to boost", 145, 25);
+  
+  
+  
+  // SCOREBOARD
+  // add scoreboard and health meter
+  fill("black");
+  textSize(20);
+  text("Score:", 15, 28);
+  text(health, 350, 30);
+  // GAME OVER
+  // if health runs out
+  // show Game over
+  text("Health:", 285, 28);
+  text(Math.round(score), 75, 28);
+  if (health <= 0) {
+    background("black");
+    fill("green");
+    textSize(50);
+    text("Game Over!" , 40, 200);
+    
+  }
+}
