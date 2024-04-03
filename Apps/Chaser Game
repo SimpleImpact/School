@@ -1,0 +1,36 @@
+var score = 0;
+var lives = 3;
+
+// -Lemon- \\
+onEvent("image", "click", function(){
+setPosition("image", randomNumber(0, 280), randomNumber(0, 410), 100, 100);
+score += 1;
+setProperty("score", "text", score);
+if (score == 10){setScreen("win");}
+});
+
+// -Image Click- \\
+onEvent("image1", "click", function(){
+  lives -= 1;
+  setProperty("lives", "text", lives);
+  if (lives == 0){setScreen("lose")}
+});
+
+// -Start Button- \\
+onEvent("startButton", "click", function(){
+setScreen("screen1");
+});
+
+// -Retry- \\
+onEvent("Retry", "click", function(){
+setScreen("startScreen");
+lives = 3;
+setProperty("lives", "text", lives);
+});
+
+
+onEvent("retry2", "click", function(){
+setScreen("screen1");
+lives = 3;
+setProperty("lives", "text", lives);
+});
