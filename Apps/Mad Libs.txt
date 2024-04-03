@@ -1,0 +1,17 @@
+var noun1;
+var noun2;
+var noun3;
+var person;
+
+onEvent("compute", "click", function(){
+  noun1 = getText("noun2Input");
+  noun2 = getText("noun3Input");
+  noun3 = getText("noun4Input");
+  person = getText("person1Input");
+  setScreen("Output");
+  setText("madOutput", "I walked to " + person + "'s house. We walked to the "+ noun1 + ". We then ate at the pizzeria.  I had " + noun2 + " on my pizza. My Friend had " + noun3 + " on his pizza. We had a great time at the " + noun1 + ".");
+});
+
+onEvent("again", "click", function( ) {
+	setScreen("Input");
+});
